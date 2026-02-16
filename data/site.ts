@@ -1,0 +1,66 @@
+export const site = {
+  name: 'Большая Уборка',
+  tagline: 'Клининговая компания',
+  description: 'Профессиональная уборка для частных лиц и организаций. Москва и Московская область.',
+  phone: '+7 (995) 797-99-96',
+  phoneDisplay: '8 (995) 797-99-96',
+  phoneRaw: '79957979996',
+  email: 'biguborka@yandex.ru',
+  schedule: 'Круглосуточно',
+  region: 'Москва и Московская область',
+  social: {
+    whatsapp: 'https://wa.me/79957979996',
+    vk: '#',
+    telegram: '#',
+  },
+  nav: {
+    individuals: [
+      { label: 'Уборка квартир', href: '/uslugi/uborka-kvartir' },
+      { label: 'Уборка домов/коттеджей', href: '/uslugi/uborka-domov' },
+      { label: 'Мойка окон', href: '/uslugi/mojka-okon' },
+      { label: 'Химчистка', href: '/uslugi/himchistka' },
+      { label: 'Озонирование', href: '/uslugi/ozonirovanie' },
+      { label: 'Удаление запахов', href: '/uslugi/udalenie-zapahov' },
+      { label: 'Дезинфекция', href: '/uslugi/dezinfekciya' },
+    ],
+    business: [
+      { label: 'Уборка офисов', href: '/uslugi/uborka-ofisov' },
+      { label: 'Уборка складов', href: '/uslugi/uborka-skladov' },
+      { label: 'Уборка фасадов/вывесок', href: '/uslugi/uborka-fasadov' },
+      { label: 'Уборка на производстве', href: '/uslugi/uborka-proizvodstvo' },
+      { label: 'Уборка жилых комплексов', href: '/uslugi/uborka-zhilkompleksov' },
+      { label: 'Мойка окон/альпинизм', href: '/uslugi/mojka-okon-alpinizm' },
+      { label: 'Уборка магазина/шоурума', href: '/uslugi/uborka-magazina' },
+      { label: 'Уборка в кафе/ресторане', href: '/uslugi/uborka-kafe' },
+      { label: 'Уборка на парковке', href: '/uslugi/uborka-parkovki' },
+    ],
+    main: [
+      { label: 'О нас', href: '/#o-nas' },
+      { label: 'Наша работа', href: '/#nasha-rabota' },
+      { label: 'Контакты', href: '/kontakty' },
+      { label: 'Отзывы', href: '/#otzyvy' },
+      { label: 'Вакансии', href: '/vakansii' },
+    ],
+  },
+  cta: {
+    order: 'Заказать уборку',
+    callback: 'Обратный звонок',
+    calculate: 'Рассчитать стоимость',
+    calculateShort: 'Рассчитать цену',
+  },
+  legal: {
+    companyName: 'Большая Уборка',
+    rights: 'Все права защищены',
+  },
+  reviewsUrl: 'https://ya.cc/t/71V-jNw93TQofZ',
+  /** Reference site (parity); do not remove. */
+  referenceUrl: 'https://bigyborka.ru/',
+  /** Competitor inspiration (patterns only); do not remove. */
+  competitorUrls: [
+    'https://cleanline-spb.ru/',
+    'https://cleacom.ru/',
+    'https://cleanbros.ru/spb/',
+    'https://cleaning-bc.ru/',
+    'https://myeasyclean.ru/',
+  ] as const,
+} as const;

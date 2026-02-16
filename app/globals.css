@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Manrope (display) + Inter (body) applied via Tailwind font-sans/font-display */
+    --color-primary: 37 99 235;
+    --color-primary-foreground: 255 255 255;
+    --brand-primary: #1d4ed8;
+    --brand-primary-dark: #1e3a8a;
+    --brand-primary-soft: #60a5fa;
+    --hero-from: #0b1b3a;
+    --hero-to: #0f2c5c;
+    --container-padding: 1rem;
+  }
+  @media (min-width: 640px) {
+    :root {
+      --container-padding: 1.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    :root {
+      --container-padding: 2rem;
+    }
+  }
+  html {
+    @apply scroll-smooth overflow-x-hidden;
+  }
+  body {
+    @apply bg-white text-slate-900 antialiased overflow-x-hidden min-w-0;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  /* Prevent horizontal scroll from flex/grid children; fix root causes in components. */
+  main {
+    @apply min-w-0 w-full;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  .focus-ring {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2;
+  }
+}
+
+@layer components {
+  .hero-gradient {
+    background: linear-gradient(135deg, var(--hero-from) 0%, var(--hero-to) 50%, #0d2444 100%);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  /* Тонкая полоса прокрутки в шапке и других блоках */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+  }
+}
