@@ -2,8 +2,8 @@
 
 // Для GitHub Pages: базовый путь репозитория (включается при деплое)
 const isGitHubPages = process.env.GITHUB_PAGES === 'true';
-const basePath = isGitHubPages ? '/CleaningSite' : '';
-const assetPrefix = isGitHubPages ? '/CleaningSite/' : '';
+const basePath = isGitHubPages ? '/KliningCompany_MVP_site' : '';
+const assetPrefix = isGitHubPages ? '/KliningCompany_MVP_site/' : '';
 
 const nextConfig = {
   reactStrictMode: true,
