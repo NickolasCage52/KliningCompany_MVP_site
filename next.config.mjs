@@ -1,9 +1,10 @@
 /** @type {import('next').NextConfig} */
 
-// Для GitHub Pages: базовый путь репозитория (включается при деплое)
+// Для GitHub Pages: базовый путь и полный URL ассетов (включается при деплое)
 const isGitHubPages = process.env.GITHUB_PAGES === 'true';
 const basePath = isGitHubPages ? '/KliningCompany_MVP_site' : '';
-const assetPrefix = isGitHubPages ? '/KliningCompany_MVP_site/' : '';
+// Полный URL для assetPrefix гарантирует загрузку CSS/JS на GitHub Pages
+const assetPrefix = isGitHubPages ? 'https://nickolascage52.github.io/KliningCompany_MVP_site/' : '';
 
 const nextConfig = {
   reactStrictMode: true,
