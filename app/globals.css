@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Montserrat для всего сайта (font-sans и font-display) */
+    --font-display: var(--font-sans);
+    --color-primary: 37 99 235;
+    --color-primary-foreground: 255 255 255;
+    --brand-primary: #1d4ed8;
+    --brand-primary-dark: #1e3a8a;
+    --brand-primary-soft: #60a5fa;
+    --hero-from: #0b1b3a;
+    --hero-to: #0f2c5c;
+    --container-padding: 1rem;
+  }
+  @media (min-width: 640px) {
+    :root {
+      --container-padding: 1.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    :root {
+      --container-padding: 2rem;
+    }
+  }
+  html {
+    @apply scroll-smooth m-0 p-0;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important;
+    overscroll-behavior-x: none;
+    /* Мобильный — чуть меньший базовый шрифт */
+    font-size: 14px;
+  }
+  @media (min-width: 640px) and (max-width: 1023px) {
+    html {
+      font-size: 15px; /* Планшет — уменьшенный шрифт относительно ПК */
+    }
+  }
+  @media (min-width: 1024px) {
+    html {
+      font-size: 16px;
+    }
+  }
+  body {
+    @apply text-slate-900 antialiased min-w-0 m-0 p-0;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important;
+    overscroll-behavior-x: none;
+    background-color: #f8fafc; /* slate-50 — убирает белую полосу под футером */
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  body.no-scroll {
+    overflow: hidden;
+  }
+  /* Prevent horizontal scroll from flex/grid children; fix root causes in components. */
+  main {
+    @apply min-w-0 w-full max-w-full bg-white;
+  }
+  /* Force all direct children of body to not exceed viewport */
+  body > * {
+    max-width: 100%;
+    min-width: 0;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  .focus-ring {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2;
+  }
+
+  /* Tighter default heading spacing on small screens */
+  @media (max-width: 639px) {
+    h1,
+    h2,
+    h3 {
+      margin-top: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+  }
+}
+
+@layer components {
+  .hero-gradient {
+    background: linear-gradient(135deg, var(--hero-from) 0%, var(--hero-to) 50%, #0d2444 100%);
+  }
+  /* Hero: мобильный и планшет — высота по контенту (все плашки видно); только ПК (lg+) — фиксированная высота */
+  .hero-full {
+    min-height: calc(100vh - 4.5rem - 5px);
+  }
+  @media (max-width: 1023px) {
+    .hero-full {
+      height: auto;
+    }
+  }
+  @media (min-width: 1024px) {
+    .hero-full {
+      height: calc(100vh - 6.5rem - 5px);
+      min-height: calc(100vh - 6.5rem - 5px);
+    }
+  }
+  @media (max-width: 767px) {
+    .carousel-arrow {
+      display: none;
+    }
+  }
+  /* Мобильный sticky CTA: плавное появление/скрытие при открытом меню */
+  .sticky-cta-bar {
+    @apply transition-all duration-200 ease-out translate-y-0 opacity-100;
+  }
+  body.mobile-menu-open .sticky-cta-bar {
+    @apply translate-y-full opacity-0 pointer-events-none;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  /*
+   * At lg+ the sticky header = Topbar (40px) + main bar (64px) = 104px.
+   * Elevate all anchored sections / headings so they clear the header after
+   * a hash-link navigation. Overrides the component-level scroll-mt-20/24.
+   */
+  @media (min-width: 1024px) {
+    section[id],
+    h2[id] {
+      scroll-margin-top: 7rem; /* 112px — 8px above the 104px combined header */
+    }
+  }
+  /*
+   * Homepage-only section rhythm: ~50% tighter than the default py-16 sm:py-24.
+   * Wrapping div .home-page is added in app/page.tsx.
+   * hero-gradient section is excluded (its padding lives on its inner Container).
+   */
+  .home-page section:not(.hero-gradient) {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  @media (min-width: 640px) {
+    .home-page section:not(.hero-gradient) {
+      padding-top: 3rem !important;
+      padding-bottom: 3rem !important;
+    }
+  }
+  /* Тонкая полоса прокрутки в шапке и других блоках */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+  }
+  /* Contain carousel overflow so it never affects document scrollWidth */
+  .carousel-contain {
+    contain: layout paint;
+    overflow: clip;
+  }
+}
